@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="HttpClientEndpointsTabState">
+    <option name="requestToText" value="&lt;CachedHttpClientTabRequests&gt;&#10;  &lt;entry key=&quot;574c64f4b52bce638b2f659a4ba59e73441fed05&quot; value=&quot;###&amp;#10;DELETE http://localhost:8080/api/v1/admin/category/delete/{{categoryId}}&quot; /&gt;&#10;  &lt;entry key=&quot;b1c6ef4c44c68ee01494f4e7031631e2c03bae2b&quot; value=&quot;###&amp;#10;GET http://localhost:8080/api/v1/public/category&quot; /&gt;&#10;  &lt;entry key=&quot;4afe95601c6ea21f771f02c2a22def397bc6ecdb&quot; value=&quot;###&amp;#10;POST http://localhost:8080/api/v1/public/category&amp;#10;Content-Type: application/json&amp;#10;&amp;#10;{&amp;#10;  &amp;quot;categoryId&amp;quot;: 0,&amp;#10;  &amp;quot;categoryName&amp;quot;: &amp;quot;&amp;quot;&amp;#10;}&quot; /&gt;&#10;&lt;/CachedHttpClientTabRequests&gt;" />
+  </component>
+</project>
