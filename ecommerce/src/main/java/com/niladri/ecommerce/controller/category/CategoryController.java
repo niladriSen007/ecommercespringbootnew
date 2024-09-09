@@ -29,15 +29,15 @@ public class CategoryController {
     }
 
     @PostMapping("/public/category")
-    public String createCategory(@RequestBody String categoryName) {
-        categoryService.createCategory(categoryName);
+    public String createCategory(@RequestBody CategoryModel category) {
+        categoryService.createCategory(category.getCategoryName());
         return "Category created successfully";
     }
 
     @PutMapping("/admin/category/update/{categoryId}")
-    public ResponseEntity<String> updateCategory(@RequestBody String categoryName, @PathVariable long categoryId) {
+    public ResponseEntity<String> updateCategory(@RequestBody CategoryModel category, @PathVariable long categoryId) {
         try {
-            categoryService.updateCategory(categoryName, categoryId);
+            categoryService.updateCategory(category.getCategoryName(), categoryId);
             return ResponseEntity.ok("Category updated successfully");
         } catch (ResponseStatusException e) {
             return new ResponseEntity<>(e.getReason(), e.getStatusCode());
