@@ -1,13 +1,12 @@
 package com.niladri.ecommerce.service.category;
 
-import com.niladri.ecommerce.model.category.CategoryModel;
-
-import java.util.List;
+import com.niladri.ecommerce.dto.category.CategoryPayloadDto;
+import com.niladri.ecommerce.dto.category.CategoryResponseDto;
 
 public interface CategoryServiceInterface {
-    public void createCategory(String categoryName);
-    public void updateCategory(String categoryName,long categoryId);
-    public void deleteCategory(long categoryId);
-    public CategoryModel getCategory(long categoryId);
-    public List<CategoryModel> getCategories();
+    public CategoryPayloadDto createCategory(String categoryName);
+    public CategoryPayloadDto updateCategory(String categoryName,long categoryId);
+    public CategoryPayloadDto deleteCategory(long categoryId);
+    public CategoryResponseDto getCategory(long categoryId);
+    public CategoryResponseDto getCategories(Integer pageNo, Integer limit, String sortBy,String sortOrder);
 }
