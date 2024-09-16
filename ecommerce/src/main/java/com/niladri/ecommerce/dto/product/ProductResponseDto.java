@@ -11,10 +11,10 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductResponseDto {
     private List<ProductPayloadDto> products;
-//    private Integer pageNo;
-//    private Integer limit;
-//    private Long totalElements;
-//    private Integer totalPages;
-//    private Boolean isLastPage;
+    private Integer pageNo;
+    private Integer limit;
+    private Long totalElements;
+    private Integer totalPages;
+    private Boolean isLastPage;
 
 }
