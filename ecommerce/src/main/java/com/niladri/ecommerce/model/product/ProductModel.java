@@ -18,7 +18,6 @@ public class ProductModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
-
     private String productName;
     private String productDescription;
     private double productPrice;
@@ -28,7 +27,7 @@ public class ProductModel {
     private String productImage;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn
     @JsonIgnore
     private CategoryModel category;
 

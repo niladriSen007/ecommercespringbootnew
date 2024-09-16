@@ -21,14 +21,13 @@ import java.util.List;
 public class CategoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long categoryId;
     @NotBlank
     @Size(min = 3, max = 50,message = "Category name should be between 3 to 50 characters")
     private String categoryName;
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
-    private List<ProductModel> product;
+    private List<ProductModel> products;
 
 
 }

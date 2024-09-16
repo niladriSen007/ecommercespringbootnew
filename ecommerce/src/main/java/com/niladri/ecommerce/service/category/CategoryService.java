@@ -47,8 +47,8 @@ public class CategoryService implements CategoryServiceInterface {
                         () -> new ResourceNotFound("Category", "categoryId", categoryId)));
         category.get().setCategoryName(categoryName);
         category.get().setCategoryId(categoryId);
-        categoryRepo.save(category.get());
-        return modelMapper.map(category.get(), CategoryPayloadDto.class);
+        CategoryModel updatedCategory  = categoryRepo.save(category.get());
+        return modelMapper.map(updatedCategory, CategoryPayloadDto.class);
     }
 
     @Override

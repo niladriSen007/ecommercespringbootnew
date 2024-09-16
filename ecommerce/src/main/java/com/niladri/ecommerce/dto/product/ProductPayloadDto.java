@@ -16,4 +16,5 @@ public class ProductPayloadDto {
     private double productSpecialPrice;
     private Integer productQuantity;
     private String productImage;
+    private Long categoryId;
 }

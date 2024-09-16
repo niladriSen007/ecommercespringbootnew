@@ -30,7 +30,7 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.OK).body(categoryList);
     }
 
-    @PostMapping("/public/category")
+    @PostMapping("/admin/category")
     public ResponseEntity<CategoryPayloadDto> createCategory(@Valid @RequestBody CategoryPayloadDto category) {
         CategoryPayloadDto newAddedCategory = categoryService.createCategory(category.getCategoryName());
         return new ResponseEntity<>(newAddedCategory, HttpStatus.CREATED);
