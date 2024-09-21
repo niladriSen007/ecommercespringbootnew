@@ -8,14 +8,19 @@ import com.niladri.ecommerce.model.category.CategoryModel;
 import com.niladri.ecommerce.model.product.ProductModel;
 import com.niladri.ecommerce.repository.category.CategoryRepo;
 import com.niladri.ecommerce.repository.product.ProductRepo;
+import com.niladri.ecommerce.service.fileservice.FileService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +33,11 @@ public class ProductService implements ProductServiceInterface {
     private ModelMapper modelMapper;
     @Autowired
     private CategoryRepo categoryRepo;
+    @Autowired
+    private FileService fileService;
+
+    @Value("${project.image}")
+    private String path ;
 
 
     @Override
@@ -133,6 +143,25 @@ public class ProductService implements ProductServiceInterface {
         productRepo.delete(productModel);
         return modelMapper.map(productModel, ProductPayloadDto.class);
     }
+
+    @Override
+    public ProductPayloadDto updateProductImage(MultipartFile image, Long productId) throws IOException {
+        Optional<ProductModel> product = productRepo.findById(productId);
+        if (product.isEmpty()) {
+            throw new ResourceNotFound("Product", "productId", productId);
+        }
+
+        // Code to update image
+//        String path = "images/";
+        String fileName = fileService.uploadImage(path,image);
+
+        product.get().setProductImage(fileName);
+        ProductModel updatedProduct = productRepo.save(product.get());
+        return modelMapper.map(updatedProduct, ProductPayloadDto.class);
+
+    }
+
+
 
     private ProductResponseDto getProductResponseDto(Integer pageNo, Integer limit, Page<ProductModel> productPage, List<ProductModel> productsList) {
         List<ProductPayloadDto> productPayloadDtoList = productsList.stream()

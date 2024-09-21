@@ -4,10 +4,14 @@ import com.niladri.ecommerce.config.AppConstants;
 import com.niladri.ecommerce.dto.product.ProductPayloadDto;
 import com.niladri.ecommerce.dto.product.ProductResponseDto;
 import com.niladri.ecommerce.service.product.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -27,7 +31,7 @@ public class ProductController {
     }
 
     @PostMapping("/admin/categories/product")
-    public ResponseEntity<ProductPayloadDto> createProduct(@RequestBody ProductPayloadDto product,
+    public ResponseEntity<ProductPayloadDto> createProduct(@Valid @RequestBody ProductPayloadDto product,
                                                            @RequestParam(name = "categoryId",required = true) Long categoryId) {
         return new ResponseEntity<>(productService.createProduct(product,categoryId), HttpStatus.CREATED);
     }
@@ -58,7 +62,7 @@ public class ProductController {
     }
 
     @PutMapping("/admin/products/update/{productId}")
-    public ResponseEntity<ProductPayloadDto> updateProduct(@RequestBody ProductPayloadDto product,
+    public ResponseEntity<ProductPayloadDto> updateProduct(@Valid @RequestBody ProductPayloadDto product,
                                                            @PathVariable Long productId) {
         return new ResponseEntity<>(productService.updateProduct(product,productId), HttpStatus.OK);
     }
@@ -66,5 +70,12 @@ public class ProductController {
     @DeleteMapping("/admin/products/delete/{productId}")
     public ResponseEntity<ProductPayloadDto> deleteProduct(@PathVariable Long productId) {
         return new ResponseEntity<>(productService.deleteProduct(productId), HttpStatus.OK);
+    }
+
+    @PutMapping("/admin/products/{productId}/image")
+    public ResponseEntity<ProductPayloadDto> updateProductImage(
+            @RequestParam(name = "Image",required = true)MultipartFile image,
+            @PathVariable Long productId) throws IOException {
+        return new ResponseEntity<>(productService.updateProductImage(image,productId), HttpStatus.OK);
     }
 }
